@@ -1,4 +1,4 @@
- // content-list.ts
+// content-list.ts
 import { Content } from './content-interface';
 
 export class ContentList {
@@ -13,7 +13,6 @@ export class ContentList {
   add(content: Content): void {
     this.contentArray.push(content);
   }
-  
 
   count(): number {
     return this.contentArray.length;
