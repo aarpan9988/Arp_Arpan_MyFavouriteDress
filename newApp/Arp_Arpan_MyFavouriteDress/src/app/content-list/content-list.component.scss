@@ -9,7 +9,7 @@
         margin-bottom: 8px;
       }
     
-    div>p:nth-child(5){
+   .tag{
         border: 1px solid black;
     }
     
@@ -42,9 +42,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
   
-    &:hover {
-      transform: scale(1.05);
-    }
+    // &:hover {
+    //   transform: scale(1.05);
+    // }
   
     
 }

@@ -1,4 +1,4 @@
-<div class="card-container">
+<!-- <div class="card-container">
 
     @for (item of contentArray; track item.id; let i=$index) {
       @if(i<5){
@@ -20,12 +20,35 @@
         </div>
         }
     }
-    
-     
-  
-        
-  
-  
-  
-  
-  
+     -->
+<div class="card-container">
+
+  <ng-container *ngFor="let item of contentArray; let i=index">
+      <div class="card" *ngIf="i < 5">
+
+          <img  [src]="item.imgURL" alt="{{ item.title }} Image" (click) = "logContentInfo(item.id.toString(), item.title)" />
+          <div class="card-content">
+
+            <h2>{{ item.title }}</h2>
+
+            <p class="description">{{ item.description }}</p>
+
+            <p class="creator">Creator: {{ item.creator }}</p>
+
+            <p class="type" *ngIf="item.type">Type: {{ item.type }}</p>
+
+            <div class="tags" *ngIf="item.tags && item.tags.length > 0">
+             <p class="tag"> Tags:{{ item.tags.join( ' , ' ) }} </p>
+             
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <script>
+  function logContentInfo(id, title) {
+    console.log("Content ID:", id);
+    console.log("Content Title:", title);
+    console.log("Function is called!");
+  }
+</script>

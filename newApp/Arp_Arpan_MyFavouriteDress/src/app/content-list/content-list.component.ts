@@ -11,7 +11,11 @@ export class ContentListComponent {
 
   name : string | undefined;
    contentArray: Content[] = [];
-   
+   logContentInfo(id: string, title: string) {
+    console.log("Content ID:", id);
+    console.log("Content Title:", title);
+  }
+  
   
   constructor(){
   this.contentArray.push(
