@@ -1,54 +1,40 @@
-<!-- <div class="card-container">
-
-    @for (item of contentArray; track item.id; let i=$index) {
-      @if(i<5){
-        <div class="card">   
-        <header>  
-        <h2>{{ item.title }}</h2>
-        </header>
-        
-          <p>{{ item.description }}</p>
-          <p>Creator: {{ item.creator }}</p>
-          @if(item.imgURL){
-             <img [src]="item.imgURL" alt="{{ item.title }} Image"   />
-          }
-          @if(item.type){ <p>Type: {{ item.type }}</p> }
-          
-          @if(item.tags && item.tags.length>0){
-            <p class="tag">Tags: {{ item.tags.join(', ') }}</p>
-          }
-        </div>
-        }
-    }
-     -->
+<div>
+  <label>Input feild</label>
+  <input type="text" [(ngModel)]="inputValue">
+  <button (click)="search(inputValue)">Search</button>
+  <h3 *ngIf="typePresent" style="color: green;"> Title is present in the list.</h3>
+  <h3 *ngIf="!typePresent && typePresent!=undefined" style="color: red;"> Title is not present in the list.</h3>
+</div>
 <div class="card-container">
+  <h2>Items with no type :</h2>
+<div *ngFor="let item of contentArray | contentTypeFilter">
+<!-- Display no type item details here -->
+<p>{{ item.title }}</p>
+<p>{{ item.description }}</p>
+<p>Creator: {{ item.creator }}</p>
+<img *ngIf="item.imgURL" [src]="item.imgURL" alt="{{ item.title }} Image" />
+</div>
+</div>
+<div class="card-container">
+  <h2>Items with type 'Type 1':</h2>
+  <div *ngFor="let item of contentArray | contentTypeFilter:'Type 1'">
+    <!-- Display item details here -->
+    <p>{{ item.title }}</p>
+    <p>{{ item.description }}</p>
+    <p>Creator: {{ item.creator }}</p>
+    <p>Type: {{ item.type }}</p>
+    <img *ngIf="item.imgURL" [src]="item.imgURL" alt="{{ item.title }} Image" />
+  </div>
+</div>
+<div class="card-container">
+  <h2>Items with type 'Type 2':</h2>
+  <div *ngFor="let item of contentArray | contentTypeFilter:'Type 2'">
+    <!-- Display item details here -->
+    <p>{{ item.title }}</p>
+    <p>{{ item.description }}</p>
+    <p>Creator: {{ item.creator }}</p>
+    <p>Type: {{ item.type }}</p>
+    <img *ngIf="item.imgURL" [src]="item.imgURL" alt="{{ item.title }} Image" />
+  </div>
+</div>
 
-  <ng-container *ngFor="let item of contentArray; let i=index">
-      <div class="card" *ngIf="i < 5">
-
-          <img  [src]="item.imgURL" alt="{{ item.title }} Image" (click) = "logContentInfo(item.id.toString(), item.title)" />
-          <div class="card-content">
-
-            <h2>{{ item.title }}</h2>
-
-            <p class="description">{{ item.description }}</p>
-
-            <p class="creator">Creator: {{ item.creator }}</p>
-
-            <p class="type" *ngIf="item.type">Type: {{ item.type }}</p>
-
-            <div class="tags" *ngIf="item.tags && item.tags.length > 0">
-             <p class="tag"> Tags:{{ item.tags.join( ' , ' ) }} </p>
-             
-            </div>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-    <script>
-  function logContentInfo(id, title) {
-    console.log("Content ID:", id);
-    console.log("Content Title:", title);
-    console.log("Function is called!");
-  }
-</script>
